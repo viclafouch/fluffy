@@ -1,6 +1,6 @@
 (function() {
 
-   this.Modal = function() {
+   this.fluffy = function() {
 
       this.closeButton = null;
       this.modal = null;
@@ -32,10 +32,10 @@
       }
    }
 
-   Modal.prototype.close = function() {
+   fluffy.prototype.close = function() {
       var _ = this;
-      this.modal.className = this.modal.className.replace(" scotch-open", "");
-      this.overlay.className = this.overlay.className.replace(" scotch-open", "");
+      this.modal.className = this.modal.className.replace(" fluffy-open", "");
+      this.overlay.className = this.overlay.className.replace(" fluffy-open", "");
       this.modal.addEventListener(this.transitionEnd, function() {
          _.modal.parentNode.removeChild(_.modal);
       });
@@ -44,13 +44,13 @@
       });
    }
 
-   Modal.prototype.open = function() {
+   fluffy.prototype.open = function() {
       buildOut.call(this);
       initializeEvents.call(this);
       window.getComputedStyle(this.modal).height;
       this.modal.className = this.modal.className + (this.modal.offsetHeight > window.innerHeight ?
-      " scotch-open scotch-anchored" : " scotch-open");
-      this.overlay.className = this.overlay.className + " scotch-open";
+      " fluffy-open fluffy-anchored" : " fluffy-open");
+      this.overlay.className = this.overlay.className + " fluffy-open";
    }
 
    function buildOut() {
@@ -66,25 +66,25 @@
       docFrag = document.createDocumentFragment();
 
       this.modal = document.createElement("div");
-      this.modal.className = "scotch-modal " + this.options.className;
+      this.modal.className = "fluffy-modal " + this.options.className;
       this.modal.style.minWidth = this.options.minWidth + "px";
       this.modal.style.maxWidth = this.options.maxWidth + "px";
 
       if (this.options.closeButton === true) {
          this.closeButton = document.createElement("button");
-         this.closeButton.className = "scotch-close close-button";
-         this.closeButton.innerHTML = "×";
+         this.closeButton.className = "fluffy-close close-button";
+         this.closeButton.innerHTML = "x";
          this.modal.appendChild(this.closeButton);
       }
 
       if (this.options.overlay === true) {
          this.overlay = document.createElement("div");
-         this.overlay.className = "scotch-overlay " + this.options.className;
+         this.overlay.className = "fluffy-overlay " + this.options.className;
          docFrag.appendChild(this.overlay);
       }
 
       contentHolder = document.createElement("div");
-      contentHolder.className = "scotch-content";
+      contentHolder.className = "fluffy-content";
       contentHolder.innerHTML = content;
       this.modal.appendChild(contentHolder);
 
@@ -112,10 +112,3 @@
    }
 
 }());
-
-var myModal = new Modal({
-   content: '<p>Test alert</p>',
-   maxWidth: 600
-});
-
-myModal.open();
