@@ -57,11 +57,18 @@
 
       var content, contentHolder, docFrag;
 
+      if (this.options === undefined) {
+         throw '1 param is missing';
+         return;
+      }
+
       if (typeof this.options.content === "string") {
          content = this.options.content;
       } else {
          content = this.options.content.innerHTML;
       }
+
+   
 
       docFrag = document.createDocumentFragment();
 
